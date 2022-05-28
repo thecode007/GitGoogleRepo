@@ -8,7 +8,7 @@ buildscript {
         lifecycle_viewmodel= "2.4.1"
         retrofit = "2.9.0"
         okhttp3 = "5.0.0-alpha.2"
-        hilt = "2.38.2"
+        hilt = "2.38.1"
         hiltViewModel= "1.0.0-alpha03"
         hiltCompiler = "1.0.0"
         fresco = "2.6.0"
@@ -19,12 +19,9 @@ buildscript {
     }
     dependencies {
         classpath "com.android.tools.build:gradle:7.0.4"
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.6.10"
-        classpath "com.google.dagger:hilt-android-gradle-plugin:2.38.1"
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin"
+        classpath "com.google.dagger:hilt-android-gradle-plugin:$hilt"
         classpath "androidx.navigation:navigation-safe-args-gradle-plugin:$nav_version"
-
-        // NOTE: Do not place your application dependencies here; they belong
-        // in the individual module build.gradle files
     }
 }
 

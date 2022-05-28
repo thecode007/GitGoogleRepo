@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">GitGoogleRpo</string>
+    <string name="splash_logo">splash_logo</string>
 </resources>
