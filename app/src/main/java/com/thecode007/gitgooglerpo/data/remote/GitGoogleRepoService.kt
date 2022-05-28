@@ -8,7 +8,7 @@ import retrofit2.http.Query
 // Created by ASafieddine on 5/28/2022.
 //
 interface GitGoogleRepoService {
-    @GET("google/repos/")
+    @GET("google/repos")
     suspend fun fetchRepos(@Query("page") nextPage: Int,
                            @Query("per_page")  pageSize:Int): List<RepoDTO>
 }

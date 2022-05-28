@@ -13,8 +13,6 @@ import kotlinx.coroutines.launch
 // Created by ASafieddine on 5/28/2022.
 //
 class SplashViewModel:ViewModel() {
-
-
      lateinit var splashFlow: Flow<Boolean>
      private lateinit var timerEndedFlow:Flow<Boolean>
      private lateinit var starterTasksEndedFlow:Flow<Boolean>

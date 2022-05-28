@@ -4,6 +4,8 @@ import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import com.thecode007.gitgooglerpo.BuildConfig
 import com.thecode007.gitgooglerpo.data.remote.GitGoogleRepoService
+import com.thecode007.gitgooglerpo.data.repository.GitGoogleReposRepository
+import com.thecode007.gitgooglerpo.domain.repository.IGitGoogleRepoRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -67,5 +69,11 @@ class AppModule {
     @Singleton
     fun provideReposApi(builder: Retrofit.Builder): GitGoogleRepoService {
         return builder.build().create(GitGoogleRepoService::class.java)
+    }
+
+    @Provides
+    @Singleton
+    fun provideGitGoogleReposRepository(api: GitGoogleRepoService): IGitGoogleRepoRepository {
+        return GitGoogleReposRepository(api)
     }
 }

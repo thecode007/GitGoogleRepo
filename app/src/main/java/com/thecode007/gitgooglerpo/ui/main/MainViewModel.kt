@@ -2,10 +2,10 @@ package com.thecode007.gitgooglerpo.ui.main
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.thecode007.gitgooglerpo.domain.usecase.FetchReposUseCase
+import com.thecode007.gitgooglerpo.ui.UiModel
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -14,15 +14,19 @@ import javax.inject.Inject
 //
 
 @HiltViewModel
-class MainViewModel @Inject constructor():ViewModel() {
+class MainViewModel @Inject constructor(val usecase: FetchReposUseCase):ViewModel() {
 
-    private val _isSplashLoading = MutableStateFlow(true)
-     val isSplashLoading = _isSplashLoading.asStateFlow()
 
+    lateinit var flowUi:Flow<UiModel>
     init {
         viewModelScope.launch {
-            delay(3000)
-            _isSplashLoading.value = false
+            flowUi =  usecase()
+                .distinctUntilChanged()
+                .stateIn(
+                this,
+                SharingStarted.WhileSubscribed(5000),
+                UiModel.Loading
+            )
         }
     }
 
