@@ -17,12 +17,16 @@ import javax.inject.Inject
 //
 
 @HiltViewModel
-class MainViewModel @Inject constructor(val repository: IGitGoogleRepoRepository):ViewModel() {
+class MainViewModel @Inject constructor(private val repository: IGitGoogleRepoRepository):ViewModel() {
 
     val queryFlow = MutableStateFlow("")
     lateinit var flowUi: Flow<PagingData<Repo>>
 
-    init {
+     var selectedRepoState: MutableStateFlow<Repo?> = MutableStateFlow(null)
+
+    lateinit var  selectedRepoFlow: Flow<Repo?>
+
+     init {
         viewModelScope.launch {
             flowUi = repository
                 .fetchRepos()
@@ -36,8 +40,18 @@ class MainViewModel @Inject constructor(val repository: IGitGoogleRepoRepository
                 }
                 .cachedIn(this)
         }
+
+        selectedRepoFlow = flow {
+            emit(null)
+        }.combine(selectedRepoState){ _, repo ->
+            repo
+        }
     }
+
+
 }
+
+
 
 
 

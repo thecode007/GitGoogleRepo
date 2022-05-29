@@ -1,4 +1,4 @@
-package com.thecode007.gitgooglerpo.ui.main
+package com.thecode007.gitgooglerpo.ui.repositoryList
 
 import androidx.recyclerview.widget.DiffUtil
 import com.thecode007.gitgooglerpo.domain.model.Repo

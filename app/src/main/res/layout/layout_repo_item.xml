@@ -1,40 +1,59 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+
+<RelativeLayout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+<com.google.android.material.card.MaterialCardView
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="10dp"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    app:contentPadding="5dp"
+    app:cardCornerRadius="10dp"
+    android:layout_margin="5dp"
+    app:cardElevation="10dp">
 
-    <com.facebook.drawee.view.SimpleDraweeView
-        android:id="@+id/sd_repo"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-        app:roundedCornerRadius="10dp"
-        app:backgroundImage="@color/light_orange"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-    />
-
-    <TextView
-        android:id="@+id/tv_name"
-        android:layout_width="0dp"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="16sp"
-        android:lines="1"
-        android:ellipsize="end"
-        android:layout_marginStart="10dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/sd_repo"
-        app:layout_constraintTop_toTopOf="@+id/sd_repo" />
+        >
+        <com.facebook.drawee.view.SimpleDraweeView
+            android:id="@+id/sd_repo"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            app:roundedCornerRadius="10dp"
+            app:backgroundImage="@color/light_orange"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            />
 
-    <TextView
-        android:id="@+id/tv_created_at"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="5dp"
-        app:layout_constraintBottom_toBottomOf="@+id/sd_repo"
-        app:layout_constraintStart_toStartOf="@+id/tv_name" />
+        <TextView
+            android:id="@+id/tv_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            tools:text="adsasda"
+            android:textStyle="bold"
+            android:lines="1"
+            android:ellipsize="end"
+            android:layout_marginStart="5dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/sd_repo"
+            app:layout_constraintTop_toTopOf="@+id/sd_repo" />
+
+        <TextView
+            android:id="@+id/tv_created_at"
+            tools:text="adsasda"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            app:layout_constraintBottom_toBottomOf="@+id/sd_repo"
+            app:layout_constraintStart_toStartOf="@+id/tv_name" />
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</com.google.android.material.card.MaterialCardView>
+</RelativeLayout>

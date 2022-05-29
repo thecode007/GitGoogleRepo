@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ui.repositoryDetails.RepositoryDetailsFragment">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        >
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/appBL"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <androidx.appcompat.widget.Toolbar
+                app:title="@string/repo_detaisl"
+                app:navigationIcon="@drawable/ic_back"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+
+        <com.facebook.drawee.view.SimpleDraweeView
+            android:id="@+id/sd_image"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            app:roundedCornerRadius="10dp"
+            app:backgroundImage="@color/light_orange"
+            android:layout_below="@+id/appBL"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="40dp"/>
+
+
+        <TextView
+            android:id="@+id/tv_name"
+            android:layout_below="@+id/sd_image"
+            android:layout_width="match_parent"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp"
+            android:layout_height="wrap_content"
+            app:drawableStartCompat="@drawable/ic_person" />
+
+        <TextView
+            android:id="@+id/tv_starcount"
+            android:layout_below="@+id/tv_name"
+            android:layout_width="match_parent"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp"
+            android:layout_height="wrap_content"
+            app:drawableStartCompat="@drawable/ic_star"/>
+
+
+        <TextView
+            android:id="@+id/tv_created_at"
+            android:layout_below="@+id/tv_starcount"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp"
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:drawableStartCompat="@drawable/ic_time_create"/>
+
+    </RelativeLayout>
+
+
+
+</FrameLayout>

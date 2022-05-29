@@ -1,4 +1,4 @@
-package com.thecode007.gitgooglerpo.ui.main
+package com.thecode007.gitgooglerpo.ui.repositoryList
 
 import android.widget.Button
 import androidx.core.view.isVisible

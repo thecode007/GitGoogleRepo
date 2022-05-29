@@ -2,6 +2,7 @@ plugins {
     id 'com.android.application'
     id 'kotlin-android'
     id 'kotlin-kapt'
+    id 'kotlin-android-extensions'
     id 'dagger.hilt.android.plugin'
     id 'androidx.navigation.safeargs'
 }
@@ -16,7 +17,7 @@ android {
         versionCode 1
         versionName "1.0"
         buildConfigField("String", "BASE_URL", "\"https://api.github.com/orgs/\"")
-        buildConfigField("String", "TOKEN", "\"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\"")
+        buildConfigField("String", "TOKEN", "\"shared_key\"")
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -50,6 +51,8 @@ dependencies {
     implementation 'com.google.android.material:material:1.6.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+
+    implementation "androidx.fragment:fragment-ktx:1.4.1"
 
 
     // Coroutines

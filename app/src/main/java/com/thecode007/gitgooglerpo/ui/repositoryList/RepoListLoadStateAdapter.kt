@@ -1,4 +1,4 @@
-package com.thecode007.gitgooglerpo.ui.main
+package com.thecode007.gitgooglerpo.ui.repositoryList
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -20,7 +20,7 @@ class RepoListLoadStateAdapter(
   ) = LoadStateViewHolder(LayoutLoadStateBinding.inflate(LayoutInflater.from(parent.context)), retry)
 
   override fun onBindViewHolder(
-    holder: LoadStateViewHolder,
-    loadState: LoadState
+      holder: LoadStateViewHolder,
+      loadState: LoadState
   ) = holder.bind(loadState)
 }

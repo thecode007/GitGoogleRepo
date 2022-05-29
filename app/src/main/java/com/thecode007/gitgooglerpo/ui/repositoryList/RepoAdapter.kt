@@ -1,4 +1,4 @@
-package com.thecode007.gitgooglerpo.ui.main
+package com.thecode007.gitgooglerpo.ui.repositoryList
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -10,7 +10,7 @@ import com.thecode007.gitgooglerpo.domain.model.Repo
 //
 // Created by ASafieddine on 5/28/2022.
 //
-class RepoAdapter(diffCallback: DiffUtil.ItemCallback<Repo>): PagingDataAdapter<Repo, RepoViewHolder>(diffCallback) {
+class RepoAdapter(diffCallback: DiffUtil.ItemCallback<Repo>, val OnRepoClick:(Repo)->Unit): PagingDataAdapter<Repo, RepoViewHolder>(diffCallback) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RepoViewHolder {
         return RepoViewHolder(LayoutRepoItemBinding.inflate(LayoutInflater.from(parent.context)))
@@ -18,7 +18,9 @@ class RepoAdapter(diffCallback: DiffUtil.ItemCallback<Repo>): PagingDataAdapter<
 
     override fun onBindViewHolder(holder: RepoViewHolder, position: Int) {
         val repo = getItem(position)
-        holder.bind(repo!!)
+        holder.bind(repo!!) {
+            OnRepoClick(repo)
+        }
     }
 
 

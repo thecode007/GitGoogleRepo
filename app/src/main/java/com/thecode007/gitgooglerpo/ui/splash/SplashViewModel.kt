@@ -7,14 +7,14 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.*
+import kotlinx.coroutines.flow.SharingStarted.Companion.WhileSubscribed
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 //
 // Created by ASafieddine on 5/28/2022.
 //
-@HiltViewModel
-class SplashViewModel @Inject constructor(val repository: GitGoogleReposRepository) :ViewModel() {
+class SplashViewModel  :ViewModel() {
      lateinit var splashFlow: Flow<Boolean>
 
     init {
@@ -23,7 +23,8 @@ class SplashViewModel @Inject constructor(val repository: GitGoogleReposReposito
                 emit(false)
                 delay(3000)
                 emit(true)
-            }
+            }.distinctUntilChanged()
+            .stateIn(viewModelScope, WhileSubscribed(5000), false)
         }
     }
 }
