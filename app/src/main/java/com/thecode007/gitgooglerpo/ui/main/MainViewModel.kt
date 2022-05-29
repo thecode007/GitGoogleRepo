@@ -2,8 +2,11 @@ package com.thecode007.gitgooglerpo.ui.main
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.thecode007.gitgooglerpo.domain.usecase.FetchReposUseCase
-import com.thecode007.gitgooglerpo.ui.UiModel
+import androidx.paging.PagingData
+import androidx.paging.cachedIn
+import androidx.paging.filter
+import com.thecode007.gitgooglerpo.domain.model.Repo
+import com.thecode007.gitgooglerpo.domain.repository.IGitGoogleRepoRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
@@ -14,20 +17,29 @@ import javax.inject.Inject
 //
 
 @HiltViewModel
-class MainViewModel @Inject constructor(val usecase: FetchReposUseCase):ViewModel() {
+class MainViewModel @Inject constructor(val repository: IGitGoogleRepoRepository):ViewModel() {
 
+    val queryFlow = MutableStateFlow("")
+    lateinit var flowUi: Flow<PagingData<Repo>>
 
-    lateinit var flowUi:Flow<UiModel>
     init {
         viewModelScope.launch {
-            flowUi =  usecase()
-                .distinctUntilChanged()
-                .stateIn(
-                this,
-                SharingStarted.WhileSubscribed(5000),
-                UiModel.Loading
-            )
+            flowUi = repository
+                .fetchRepos()
+                .cachedIn(this)
+                .combine(queryFlow) { pagingData, query ->
+                    pagingData.filter { repo ->
+                        if (query.isEmpty())
+                            return@filter true
+                        repo.repoName.lowercase().startsWith(query.lowercase())
+                    }
+                }
+                .cachedIn(this)
         }
     }
-
 }
+
+
+
+
+

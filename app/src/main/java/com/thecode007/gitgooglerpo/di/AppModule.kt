@@ -10,7 +10,6 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
-import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -26,23 +25,26 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 class AppModule {
 
-    @Provides
-    @Singleton
-    fun provideInterceptor(): Interceptor {
-        val logger = HttpLoggingInterceptor()
-        logger.level = HttpLoggingInterceptor.Level.BASIC
-        return logger
-    }
 
     @Provides
     @Singleton
-    fun provideOkHttpClient(interceptor: Interceptor): OkHttpClient {
+    fun provideOkHttpClient(): OkHttpClient {
+        val logger = HttpLoggingInterceptor()
+        logger.level = HttpLoggingInterceptor.Level.BODY
+
         return OkHttpClient.Builder()
+            .addInterceptor( logger)
             .callTimeout(5, TimeUnit.SECONDS)
             .connectTimeout(10, TimeUnit.SECONDS)
             .writeTimeout(10, TimeUnit.SECONDS)
             .readTimeout(30, TimeUnit.SECONDS)
-            .addInterceptor(interceptor)
+            .addInterceptor { chain ->
+                val newRequest = chain.request().newBuilder()
+                    .header("Authorization", "Bearer ".plus(BuildConfig.TOKEN))
+                    .header("accept", "application/vnd.github+json")
+                    .build()
+                chain.proceed(newRequest)
+            }
             .build()
     }
 

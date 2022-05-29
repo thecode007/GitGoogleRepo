@@ -38,7 +38,7 @@ data class RepoDTO(
     val homepage: String,
     val hooks_url: String,
     val html_url: String,
-    val id: Int,
+    val id: Long,
     val is_template: Boolean,
     val issue_comment_url: String,
     val issue_events_url: String,

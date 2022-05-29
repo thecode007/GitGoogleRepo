@@ -16,6 +16,7 @@ android {
         versionCode 1
         versionName "1.0"
         buildConfigField("String", "BASE_URL", "\"https://api.github.com/orgs/\"")
+        buildConfigField("String", "TOKEN", "\"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\"")
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -77,6 +78,9 @@ dependencies {
     implementation "androidx.hilt:hilt-navigation-fragment:1.0.0"
     implementation "androidx.hilt:hilt-work:1.0.0"
 
+    implementation "it.czerwinski.android.hilt:hilt-extensions:1.1.0"
+    kapt "it.czerwinski.android.hilt:hilt-processor:1.1.0"
+
 
     implementation "androidx.paging:paging-runtime-ktx:$pagingVersion"
 
@@ -86,6 +90,8 @@ dependencies {
     // Kotlin
     implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
     implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
+
+
 
     //noinspection GradleDynamicVersion
     testImplementation 'junit:junit:4.+'

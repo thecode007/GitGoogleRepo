@@ -1,6 +1,7 @@
 package com.thecode007.gitgooglerpo
 
 import android.app.Application
+import com.facebook.drawee.backends.pipeline.Fresco
 import dagger.hilt.android.HiltAndroidApp
 
 //
@@ -16,6 +17,7 @@ class GitGoogleRepoApplication:Application() {
 
     override fun onCreate() {
         super.onCreate()
+        Fresco.initialize(this)
         appInstance = this
     }
 }

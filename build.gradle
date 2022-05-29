@@ -12,6 +12,7 @@ buildscript {
         hiltViewModel= "1.0.0-alpha03"
         hiltCompiler = "1.0.0"
         fresco = "2.6.0"
+        roomVersion="2.4.2"
     }
     repositories {
         google()
