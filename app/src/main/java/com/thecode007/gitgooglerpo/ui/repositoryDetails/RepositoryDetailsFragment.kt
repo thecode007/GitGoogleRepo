@@ -10,6 +10,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import com.thecode007.gitgooglerpo.R
 import com.thecode007.gitgooglerpo.databinding.FragmentRepositoryDetailsBinding
+import com.thecode007.gitgooglerpo.domain.model.Repo
 import com.thecode007.gitgooglerpo.ui.main.MainViewModel
 
 
@@ -33,13 +34,21 @@ class RepositoryDetailsFragment : Fragment() {
         val repo = viewModel.selectedRepoState.value
 
         if (repo != null) {
-            binding.sdImage.setImageURI(repo.avatarUrl)
-            binding.tvName.text = repo.repoName
-            binding.tvCreatedAt.text = repo.creationDate
-            binding.tvStarcount.text = repo.stargazers_count.toString()
+            binding.bindRepoData(repo)
+        }
 
+        binding.toolbar.setNavigationOnClickListener {
+            requireActivity().onBackPressed()
         }
 
     }
+
+    fun FragmentRepositoryDetailsBinding.bindRepoData(repo: Repo) {
+        sdImage.setImageURI(repo.avatarUrl)
+        tvName.text = repo.repoName
+        tvCreatedAt.text = repo.creationDate
+        tvStarcount.text = repo.stargazers_count.toString()
+    }
+
 
 }
